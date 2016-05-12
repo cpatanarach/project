@@ -30,16 +30,18 @@ class HomeController extends Controller
         
         if (Auth::user()->type=='admin') {
             return view('admin');
-        }elseif(Auth::user()->type=='user'){
+        }elseif(Auth::user()->type=='draft'){
+            return view('guest');
+        }elseif(Auth::user()->type=='guest'){
             return view('home');
         }else{
-            return view('guest');
+            return 'Coming Soon...';
         }
     }
     public function guest(Request $request){
         $user = User::findOrFail(Auth::user()->id);
         if(md5($user->email) == $request->verify){
-            $user->type = 'user';
+            $user->type = 'guest';
             $user->save();
             return redirect()->back();
         }else{

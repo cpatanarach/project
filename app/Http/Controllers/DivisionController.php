@@ -21,8 +21,9 @@ class DivisionController extends Controller
         $this->middleware('auth');
     }
     public function validator($data){
+        if(empty($data['id'])){$data['id']=0;}
         return Validator::make($data, [
-            'division_name' => 'required|min:6|max:64|unique:divisions',
+            'division_name' => 'required|min:6|max:64|unique:divisions,division_name,'.$data['id'],
         ],[
             'required'=>'ข้อมูลที่จำเป็น',
             'min'=>'ไม่ควรใช้อักษรย่อ',

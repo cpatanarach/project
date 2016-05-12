@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Auth;
-Use App\User;
+use App\User;
+//use App\Department;
+use App\Division;
+
 
 class AdminController extends Controller
 {
@@ -19,9 +22,9 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
     public function listAlluser(){
-        if(Auth::user()->type == 'admin'){
-            
-            return "ok";
+        if(Auth::user()->type == 'admin'){   
+            $user = User::with('getDepartment')->with('getDivision')->where('type','=','guest')->get();
+            return view('admin.accept_user')->with('guest',$user);
         }else{
             Auth::logout();
             return redirect()->back();

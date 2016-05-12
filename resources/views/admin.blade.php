@@ -9,16 +9,16 @@
 
                 <div class="panel-body">
                     <ul><ul>
-                        <li><a class="label-control" href="{{url('/accept/{id}')}}">อนุญาตผู้ใช้งานเข้าสู่ระบบ</a></li>
-                        <li><a class="label-control" href="{{url('/department')}}">การจัดการผู้ใช้งานภายในระบบ</a></li>
+                        <li class="btn-link"><a class="btn-link" href="{{url('/accept/{id}')}}">อนุญาตผู้ใช้งานเข้าสู่ระบบ</a></li>
+                        <li class="btn-link"><a class="btn-link" href="{{url('/department')}}">การจัดการผู้ใช้งานภายในระบบ</a></li>
                     </ul></ul>
                 </div>
                 <div class="panel-heading"><strong>Administrator's Page</strong></div>
 
                 <div class="panel-body">
                 <ul><ul>
-                        <li><a class="label-control" href="{{url('/division')}}">การจัดการหน่วยงานส่วนกลาง</a></li>
-                        <li><a class="label-control" href="{{url('/department')}}">การจัดการหน่วยงานส่วนภูมิภาค</a></li>
+                        <li class="btn-link"><a class="btn-link" href="{{url('/division')}}">การจัดการหน่วยงานส่วนกลาง</a></li>
+                        <li class="btn-link"><a class="btn-link" href="{{url('/department')}}">การจัดการหน่วยงานส่วนภูมิภาค</a></li>
                 </ul></ul>
                 </div>
             </div>

@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'department_id', 'email', 'password', 'type',
+        'firstname', 'lastname', 'department_id', 'division_id', 'email', 'password', 'type',
     ];
 
     /**
@@ -23,5 +23,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+    protected $primaryKey='id';
+    public function getDepartment(){
+        return $this->belongsTo('App\Department',$this->primaryKey);
+    }
+    public function getDivision(){
+        return $this->belongsTo('App\Division',$this->primaryKey);
+    }
 }

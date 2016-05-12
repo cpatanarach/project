@@ -23,6 +23,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/division', 'DivisionController@index');
 	Route::get('/accept/{id}', 'AdminController@listAlluser');
 	Route::get('/profile/{id}', 'ProfileController@show');
+	/* POST Route*/
 	Route::post('/add_department', 'DepartmentController@store');
 	Route::post('/guest/{id}', 'HomeController@guest');
 	Route::post('/add_division', 'DivisionController@store');
@@ -33,4 +34,6 @@ Route::group(['middleware' => 'web'], function () {
 	Route::post('/edit_department/{id}', 'DepartmentController@edit');
 	Route::post('/update_department/{id}', 'DepartmentController@update');
 	Route::post('/update_profile/{id}', 'ProfileController@update');
+	//Jquery Ajax Service
+	Route::post('/getdepartment', 'AjaxController@getdepartment');
 });

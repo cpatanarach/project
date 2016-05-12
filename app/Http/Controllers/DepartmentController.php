@@ -30,6 +30,7 @@ class DepartmentController extends Controller
         }
     }
     public function validator($data){
+        if(empty($data['id'])){$data['id']=0;}
         return Validator::make($data, [
             'department_name' => 'required|min:10|max:64|unique:departments,department_name,'.$data['id'],
             'division_id' => 'required|numeric',

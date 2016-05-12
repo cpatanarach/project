@@ -53,12 +53,15 @@ class AuthController extends Controller
             'lastname' => 'required|max:32',
             'email' => 'required|email|max:64|unique:users',
             'password' => 'required|min:6|confirmed',
+            'department_id'=>'numeric',
+            'division_id'=>'numeric',
             
         ],[
             'max'=>'ข้อมูลยาวเกินไป',
             'min'=>'ข้อมูลสั้นเกินไป',
             'required'=>'ข้อมูลที่จำเป็น',
             'unique'=>'อีเมลถูกใช้แล้ว',
+            'numeric'=>'ข้อมูลจำเป็น',
         ]);
     }
 
@@ -74,9 +77,10 @@ class AuthController extends Controller
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'department_id' => $data['department_id'],
+            'division_id' => $data['division_id'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'type' => 'guest',
+            'type' => 'draft',
         ]);
     }
 }

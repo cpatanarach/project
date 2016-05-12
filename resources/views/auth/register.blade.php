@@ -80,26 +80,28 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">หน่วยงาน</label>
+                        <div class="form-group{{ $errors->has('division_id') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">ส่วนกลาง</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" name="department_id" onselect="document.getElementById("s1").">
-                                    @foreach($department as $departments)
-                                        <option value="{{$departments->id}}">{{$departments->department_name}}</option>
+                                <select id="division_id" class="form-control" name="division_id">
+                                    <option value="draf">เลือกส่วนกลาง</option>
+                                    @foreach($division as $divisions)
+                                    @if(old('division_id')==$divisions->id)
+                                        <option value="{{$divisions->id}}" selected="">{{$divisions->division_name}}</option>
+                                    @endif
+                                        <option value="{{$divisions->id}}">{{$divisions->division_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('division_id') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('department_id') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">หน่วยงาน</label>
 
                             <div class="col-md-6">
-                                <select id="s1" class="form-control" name="division_id">
-                                    @foreach($division as $divisions)
-                                        <option value="{{$divisions->id}}">{{$divisions->division_name}}</option>
-                                    @endforeach
+                                <select id="department_id" class="form-control" name="department_id">
+                                    <option value="draft">เลือกหน่วยงาน</option>
                                 </select>
                             </div>
                         </div>
@@ -117,4 +119,25 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+
+    <script>
+        $(document).ready(function(){
+            alert('document.ready');
+        });
+        $('#division_id').change(function(){
+            $('#department_id').find('option').remove().end();
+            $('#department_id').append('<option value="draft">เลือกส่วนกลาง</option>');
+            $.post('{{url('getdepartment')}}',
+                {'id':$(this).val(),'_token':$('input[name=_token]').val()},function(response){
+                $('#department_id').append('<option value="0">สังกัดส่วนกลาง</option>');
+                $.each(response, function(row, department) {
+                    $('#department_id').append('<option value="'+department.id+'">'+department.department_name+'</option>');
+                });
+            });
+        });
+
+    </script>
+
 @endsection
